@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Video Layout - Interactive Play Button</title>
+  
+  <!-- Script Iklan Baru (Diletakkan di head untuk performa optimal) -->
+  <script data-cfasync="false" async type="text/javascript" src="//fm.alogiansear.com/s1omJAMiRmc5/155995"></script>
+
   <!-- Mengimpor Font Google (Poppins) -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
   
@@ -132,11 +136,13 @@
       background-color: #0f172a;
       min-height: 80px;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       border-bottom: 2px solid #334155;
       color: #94a3b8;
       font-weight: 600;
+      gap: 10px;
     }
 
     /* === MORE VIDEOS BUTTON === */
@@ -150,7 +156,7 @@
       display: inline-block;
       width: 100%;
       padding: 12px 20px;
-      background: linear-gradient(135deg, #6366f1, #a855f7);
+      background: linear-gradient(135deg, #1877f2, #166fe5); /* Menggunakan warna khas Facebook */
       color: #ffffff;
       font-size: 1rem;
       font-weight: 600;
@@ -158,13 +164,13 @@
       border-radius: 8px;
       border: none;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+      box-shadow: 0 4px 12px rgba(24, 119, 242, 0.3);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .btn-more-videos:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(168, 85, 247, 0.5);
+      box-shadow: 0 6px 18px rgba(24, 119, 242, 0.5);
     }
   </style>
 </head>
@@ -181,7 +187,7 @@
     <div class="player-section">
       <video id="myVideo" controls poster="https://via.placeholder.com/600x337/000000/FFFFFF?text=Click+Play+To+Watch">
         <!-- Ganti 'src' dengan URL file video .mp4 Anda -->
-        <source src="https://qu.ax/QoWaO.mp4" type="video/mp4">
+        <source src="https://qu.ax/QoWaO.mp4/" type="video/mp4">
         Browser Anda tidak mendukung pemutar video HTML5.
       </video>
 
@@ -191,12 +197,13 @@
 
     <!-- Iklan Native Banner Bawah -->
     <div class="ad-section">
-      <div>IKLAN NATIVE BANNER</div>
+      <!-- Script Iklan 1 -->
+      <script data-cfasync="false" async type="text/javascript" src="//oc.trifledloto.com/tpFZBYBG4krcxye4/155934"></script>
     </div>
 
     <!-- Tombol More Videos -->
     <div class="more-videos-section">
-      <a href="#" class="btn-more-videos">MORE VIDEOS</a>
+      <a href="https://www.facebook.com/scrollsbuzz" target="_blank" rel="noopener noreferrer" class="btn-more-videos">MORE VIDEOS</a>
     </div>
   </div>
 

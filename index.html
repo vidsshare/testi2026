@@ -1,263 +1,202 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>VIDEO TITLE</title>
-
+  <title>Video Layout - Stylized Text</title>
+  <!-- Mengimpor Font Google (Poppins) untuk tampilan modern -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      padding: 20px 10px;
-      background: #111;
-      color: #fff;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      background-color: #0f172a; /* Latar belakang gelap agar warna judul menonjol */
     }
 
-    .video-wrapper {
+    .video-card {
       width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
+      max-width: 600px;
+      border: 2px solid #1e293b;
+      border-radius: 12px;
+      background-color: #1e293b;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
     }
 
-    /* VIDEO TITLE */
-    .video-title {
-      font-size: 24px;
-      font-weight: 700;
-      line-height: 1.3;
+    /* === HEADER SECTION (JUDUL & DESKRIPSI BERWARNA) === */
+    .header-section {
+      padding: 20px;
+      text-align: center;
+      background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+      border-bottom: 2px solid #334155;
+    }
+
+    /* Judul dengan Gradient Teks Berwarna & Glow */
+    .header-section h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #ff416c, #ff4b2b, #ffb347);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 15px rgba(255, 65, 108, 0.3);
       margin-bottom: 8px;
     }
 
-    /* VIDEO DESCRIPTION */
-    .video-description {
-      font-size: 15px;
-      line-height: 1.6;
-      color: #bbb;
-      margin-bottom: 18px;
+    /* Deskripsi dengan Warna Cerah & Latar Soft Badge */
+    .header-section p {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: #38bdf8; /* Warna cyan/biru terang */
+      line-height: 1.5;
+      background: rgba(56, 189, 248, 0.08);
+      padding: 8px 14px;
+      border-radius: 6px;
+      display: inline-block;
+      border: 1px solid rgba(56, 189, 248, 0.2);
     }
 
-    /* VIDEO PLAYER */
-    .video-player {
+    /* Video Player Container */
+    .player-section {
       position: relative;
       width: 100%;
-      aspect-ratio: 16 / 9;
-      background: #000;
-      overflow: hidden;
-      border-radius: 6px;
+      padding-top: 56.25%; /* Rasio 16:9 */
+      background-color: #000;
+      border-bottom: 2px solid #334155;
     }
 
-    .video-player video {
+    .player-section iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      display: block;
-      object-fit: contain;
-      background: #000;
+      border: none;
+      z-index: 1;
     }
 
-    /* CENTER PLAY BUTTON */
-    .center-play {
+    /* Overlay Iklan di Atas Video */
+    .video-ad-overlay {
       position: absolute;
-      top: 50%;
+      bottom: 10px;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 468px;
+      background-color: rgba(15, 23, 42, 0.9);
+      color: #fff;
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+      z-index: 10;
+      border: 1px solid #334155;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    }
 
-      width: 76px;
-      height: 76px;
-
-      padding: 0;
+    .close-ad-btn {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #ef4444;
+      color: #fff;
       border: none;
       border-radius: 50%;
-
-      background: rgba(255, 255, 255, 0.95);
-      color: #111;
-
-      font-size: 30px;
-      line-height: 1;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
+      width: 22px;
+      height: 22px;
+      font-size: 12px;
       cursor: pointer;
-      z-index: 10;
-
-      transition: transform 0.2s ease, opacity 0.2s ease;
+      font-weight: bold;
     }
 
-    .center-play span {
-      margin-left: 5px;
-    }
-
-    .center-play:hover {
-      transform: translate(-50%, -50%) scale(1.08);
-    }
-
-    .center-play.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    /* NATIVE BANNER */
-    .native-banner {
-      width: 100%;
-      margin-top: 18px;
-      padding: 12px;
-
-      background: #1c1c1c;
-      border: 1px solid #333;
-      border-radius: 6px;
-
+    /* Iklan Native Banner Bawah */
+    .ad-section {
+      padding: 15px;
       text-align: center;
-      overflow: hidden;
-    }
-
-    .native-banner-label {
-      font-size: 10px;
-      color: #777;
-      margin-bottom: 8px;
-
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .native-banner-content {
-      width: 100%;
-      min-height: 90px;
-
+      background-color: #0f172a;
+      min-height: 80px;
       display: flex;
       align-items: center;
       justify-content: center;
-
-      overflow: hidden;
+      border-bottom: 2px solid #334155;
+      color: #94a3b8;
+      font-weight: 600;
     }
 
-    /* MOBILE */
-    @media (max-width: 600px) {
+    /* Button More Videos */
+    .more-videos-section {
+      padding: 15px;
+      text-align: center;
+      background-color: #1e293b;
+    }
 
-      body {
-        padding: 15px 8px;
-      }
+    .btn-more-videos {
+      display: inline-block;
+      width: 100%;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
 
-      .video-title {
-        font-size: 20px;
-      }
-
-      .video-description {
-        font-size: 14px;
-      }
-
-      .center-play {
-        width: 62px;
-        height: 62px;
-        font-size: 25px;
-      }
-
-      .native-banner {
-        margin-top: 14px;
-        padding: 8px;
-      }
+    .btn-more-videos:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(168, 85, 247, 0.5);
     }
   </style>
 </head>
-
 <body>
 
-  <div class="video-wrapper">
-
-    <!-- VIDEO TITLE -->
-    <div class="video-title">
-      VIDEO TITLE
+  <div class="video-card">
+    <!-- Header dengan Judul & Deskripsi Berwarna -->
+    <div class="header-section">
+      <h1>🔥 AMAZING VIDEO TITLE</h1>
+      <p>✨ Watch this trending video to explore awesome content and tips!</p>
     </div>
 
-    <!-- VIDEO DESCRIPTION -->
-    <div class="video-description">
-      Video description goes here. Watch this video online in high quality.
-    </div>
+    <!-- Video Player + Ad Overlay -->
+    <div class="player-section">
+      <iframe 
+        src="https://qu.ax/QoWaO.mp4" 
+        title="Video Player" 
+        allowfullscreen>
+      </iframe>
 
-    <!-- VIDEO PLAYER -->
-    <div class="video-player">
-
-      <video
-        id="videoPlayer"
-        controls
-        playsinline
-        preload="metadata"
-        poster="https://cdn.aceimg.com/FE4W6dWaV.png">
-
-        <source
-          src="https://qu.ax/QoWaO.mp4"
-          type="video/mp4">
-
-        Browser Anda tidak mendukung pemutar video.
-
-      </video>
-
-      <!-- CENTER PLAY -->
-      <button
-        class="center-play"
-        id="playButton"
-        type="button"
-        aria-label="Play video">
-
-        <span>▶</span>
-
-      </button>
-
-    </div>
-
-    <!-- NATIVE BANNER -->
-    <div class="native-banner">
-
-      <div class="native-banner-label">
-        Advertisement
+      <!-- Ad Overlay di atas video -->
+      <div class="video-ad-overlay" id="adOverlay">
+        <button class="close-ad-btn" onclick="document.getElementById('adOverlay').style.display='none'">✕</button>
+        <a href="https://example.com" target="_blank" style="color: #facc15; text-decoration: none; font-weight: 600;">
+          📢 Special Offer! Click here to claim your reward.
+        </a>
       </div>
-
-      <div class="native-banner-content">
-
-        <!-- NATIVE BANNER AD SCRIPT -->
-        <script
-          async='async'
-          data-cfasync='false'
-          src='//pd.warkedmalie.com/tTQK0kTMAoSfhiail/151126'
-          type='text/javascript'>
-        </script>
-
-      </div>
-
     </div>
 
+    <!-- Iklan Native Banner Bawah -->
+    <div class="ad-section">
+      <div>IKLAN NATIVE BANNER</div>
+    </div>
+
+    <!-- Tombol More Videos -->
+    <div class="more-videos-section">
+      <a href="#" class="btn-more-videos">MORE VIDEOS</a>
+    </div>
   </div>
-
-  <script>
-    const video = document.getElementById("videoPlayer");
-    const playButton = document.getElementById("playButton");
-
-    /* Play video */
-    playButton.addEventListener("click", function () {
-      video.play();
-    });
-
-    /* Hide center button when playing */
-    video.addEventListener("play", function () {
-      playButton.classList.add("hidden");
-    });
-
-    /* Show center button when paused */
-    video.addEventListener("pause", function () {
-      playButton.classList.remove("hidden");
-    });
-
-    /* Show center button when video ends */
-    video.addEventListener("ended", function () {
-      playButton.classList.remove("hidden");
-    });
-  </script>
 
 </body>
 </html>
-```

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Video Layout - Stylized Text</title>
-  <!-- Mengimpor Font Google (Poppins) untuk tampilan modern -->
+  <title>Video Layout - Interactive Play Button</title>
+  <!-- Mengimpor Font Google (Poppins) -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
   
   <style>
@@ -19,7 +19,7 @@
       display: flex;
       justify-content: center;
       padding: 20px;
-      background-color: #0f172a; /* Latar belakang gelap agar warna judul menonjol */
+      background-color: #0f172a;
     }
 
     .video-card {
@@ -32,7 +32,7 @@
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
     }
 
-    /* === HEADER SECTION (JUDUL & DESKRIPSI BERWARNA) === */
+    /* === HEADER SECTION === */
     .header-section {
       padding: 20px;
       text-align: center;
@@ -40,7 +40,6 @@
       border-bottom: 2px solid #334155;
     }
 
-    /* Judul dengan Gradient Teks Berwarna & Glow */
     .header-section h1 {
       font-size: 1.6rem;
       font-weight: 800;
@@ -53,11 +52,10 @@
       margin-bottom: 8px;
     }
 
-    /* Deskripsi dengan Warna Cerah & Latar Soft Badge */
     .header-section p {
       font-size: 0.95rem;
       font-weight: 400;
-      color: #38bdf8; /* Warna cyan/biru terang */
+      color: #38bdf8;
       line-height: 1.5;
       background: rgba(56, 189, 248, 0.08);
       padding: 8px 14px;
@@ -66,7 +64,7 @@
       border: 1px solid rgba(56, 189, 248, 0.2);
     }
 
-    /* Video Player Container */
+    /* === VIDEO PLAYER & CUSTOM PLAY BUTTON === */
     .player-section {
       position: relative;
       width: 100%;
@@ -75,50 +73,59 @@
       border-bottom: 2px solid #334155;
     }
 
-    .player-section iframe {
+    .player-section video {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      border: none;
-      z-index: 1;
+      object-fit: cover;
     }
 
-    /* Overlay Iklan di Atas Video */
-    .video-ad-overlay {
+    /* Tombol Play Custom di Tengah Video */
+    .custom-play-btn {
       position: absolute;
-      bottom: 10px;
+      top: 50%;
       left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-      max-width: 468px;
-      background-color: rgba(15, 23, 42, 0.9);
-      color: #fff;
-      padding: 10px;
-      border-radius: 8px;
-      text-align: center;
-      z-index: 10;
-      border: 1px solid #334155;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-    }
-
-    .close-ad-btn {
-      position: absolute;
-      top: -8px;
-      right: -8px;
-      background: #ef4444;
-      color: #fff;
-      border: none;
+      transform: translate(-50%, -50%);
+      width: 70px;
+      height: 70px;
+      background: rgba(255, 65, 108, 0.9);
+      border: 3px solid #ffffff;
       border-radius: 50%;
-      width: 22px;
-      height: 22px;
-      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
-      font-weight: bold;
+      z-index: 10;
+      box-shadow: 0 0 20px rgba(255, 65, 108, 0.6);
+      transition: transform 0.2s ease, background 0.2s ease, opacity 0.3s ease;
     }
 
-    /* Iklan Native Banner Bawah */
+    .custom-play-btn:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+      background: rgba(255, 75, 43, 1);
+    }
+
+    /* Segitiga Simbol Play */
+    .custom-play-btn::after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid transparent;
+      border-left: 20px solid #ffffff;
+      margin-left: 4px; /* Menyelaraskan simbol ke tengah */
+    }
+
+    /* Kelas untuk menyembunyikan tombol saat video berjalan */
+    .custom-play-btn.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* === IKLAN NATIVE BANNER BAWAH === */
     .ad-section {
       padding: 15px;
       text-align: center;
@@ -132,7 +139,7 @@
       font-weight: 600;
     }
 
-    /* Button More Videos */
+    /* === MORE VIDEOS BUTTON === */
     .more-videos-section {
       padding: 15px;
       text-align: center;
@@ -164,27 +171,22 @@
 <body>
 
   <div class="video-card">
-    <!-- Header dengan Judul & Deskripsi Berwarna -->
+    <!-- Header -->
     <div class="header-section">
       <h1>🔥 AMAZING VIDEO TITLE</h1>
       <p>✨ Watch this trending video to explore awesome content and tips!</p>
     </div>
 
-    <!-- Video Player + Ad Overlay -->
+    <!-- Video Player dengan Custom Play Button -->
     <div class="player-section">
-      <iframe 
-        src="https://qu.ax/QoWaO.mp4" 
-        title="Video Player" 
-        allowfullscreen>
-      </iframe>
+      <video id="myVideo" controls poster="https://via.placeholder.com/600x337/000000/FFFFFF?text=Click+Play+To+Watch">
+        <!-- Ganti 'src' dengan URL file video .mp4 Anda -->
+        <source src="https://qu.ax/QoWaO.mp4" type="video/mp4">
+        Browser Anda tidak mendukung pemutar video HTML5.
+      </video>
 
-      <!-- Ad Overlay di atas video -->
-      <div class="video-ad-overlay" id="adOverlay">
-        <button class="close-ad-btn" onclick="document.getElementById('adOverlay').style.display='none'">✕</button>
-        <a href="https://example.com" target="_blank" style="color: #facc15; text-decoration: none; font-weight: 600;">
-          📢 Special Offer! Click here to claim your reward.
-        </a>
-      </div>
+      <!-- Tombol Play Tengah -->
+      <div class="custom-play-btn" id="playBtn"></div>
     </div>
 
     <!-- Iklan Native Banner Bawah -->
@@ -197,6 +199,38 @@
       <a href="#" class="btn-more-videos">MORE VIDEOS</a>
     </div>
   </div>
+
+  <!-- JavaScript Logika Tombol Play/Pause -->
+  <script>
+    const video = document.getElementById('myVideo');
+    const playBtn = document.getElementById('playBtn');
+
+    // Fungsi Toggle Play / Pause
+    function togglePlay() {
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    }
+
+    // Klik tombol custom Play di tengah
+    playBtn.addEventListener('click', togglePlay);
+
+    // Sembunyikan tombol saat video berjalan
+    video.addEventListener('play', () => {
+      playBtn.classList.add('hidden');
+    });
+
+    // Tampilkan tombol kembali saat video di-pause atau selesai
+    video.addEventListener('pause', () => {
+      playBtn.classList.remove('hidden');
+    });
+
+    video.addEventListener('ended', () => {
+      playBtn.classList.remove('hidden');
+    });
+  </script>
 
 </body>
 </html>

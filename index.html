@@ -1,622 +1,228 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='id'>
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NextWatchVidio — Midnight Cyber-Luxury</title>
-  
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<meta charset='UTF-8'/>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'/>
+<title>Central Vibes Video</title>
+<style id='page-skin-1' type='text/css'>
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:#0a0512;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;overflow-x:hidden;color:#fff;}
 
-  <style>
-    /* =========================================================
-       1. CORE RESET & THEME VARIABLES
-       ========================================================= */
-    :root {
-      --bg-dark: #05020a;
-      --accent-purple: #a855f7;
-      --accent-magenta: #ec4899;
-      --accent-gold: #d4af37;
-      --neon-glow-purple: rgba(168, 85, 247, 0.45);
-      --neon-glow-gold: rgba(212, 175, 55, 0.35);
-      --glass-bg: rgba(18, 10, 32, 0.65);
-      --glass-border: rgba(168, 85, 247, 0.25);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-    }
+/* BACKGROUND GLOW */
+body::before{content:"";position:fixed;top:-20%;left:50%;transform:translateX(-50%);width:100%;max-width:500px;height:400px;background:radial-gradient(circle, rgba(168,85,247,0.15) 0%, rgba(236,72,153,0.05) 50%, transparent 70%);z-index:-1;pointer-events:none;}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
+/* PAGE CONTAINER */
+.page{width:100%;max-width:480px;margin:auto;min-height:100vh;padding-bottom:50px;border-left:1px solid rgba(168,85,247,0.1);border-right:1px solid rgba(168,85,247,0.1);box-shadow: 0 0 40px rgba(0,0,0,0.8);}
 
-    html, body {
-      background-color: var(--bg-dark);
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      color: var(--text-main);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+/* HEADER VIP & LOGO */
+.header{padding:20px 16px 14px;text-align:center;}
+.vip-badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(90deg, #1e1b2e 0%, #171324 100%);border:1px solid #f59e0b;padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;color:#fcd34d;letter-spacing:0.5px;box-shadow:0 0 15px rgba(245,158,11,0.2);margin-bottom:12px;text-transform:uppercase;}
+.logo{font-size:24px;font-weight:900;letter-spacing:0.5px;text-transform:uppercase;color:#fff;}
+.logo span{color:#d946ef;text-shadow:0 0 15px rgba(217,70,239,0.5);}
 
-    /* Ambient Background Mesh & Particle Orbs */
-    .bg-mesh {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      background: 
-        radial-gradient(circle at 20% 15%, rgba(168, 85, 247, 0.18) 0%, transparent 40%),
-        radial-gradient(circle at 80% 45%, rgba(236, 72, 153, 0.12) 0%, transparent 45%),
-        radial-gradient(circle at 50% 85%, rgba(212, 175, 55, 0.12) 0%, transparent 50%),
-        linear-gradient(180deg, #05020a 0%, #080312 50%, #030107 100%);
-      background-attachment: fixed;
-    }
+/* TAGS / CHIPS */
+.tags-container{display:flex;justify-content:center;align-items:center;gap:6px;margin-top:12px;flex-wrap:wrap;padding:0 10px;}
+.tag-chip{background:#181226;border:1px solid rgba(168,85,247,0.3);color:#e2e8f0;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;}
+.tag-dot{color:#a855f7;font-weight:bold;font-size:14px;}
 
-    .ambient-orb {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(80px);
-      pointer-events: none;
-      z-index: -1;
-      opacity: 0.6;
-      animation: floatOrb 12s infinite alternate ease-in-out;
-    }
+/* VIDEO CARD */
+.video-card{margin:16px 12px;background:#120d1c;border-radius:20px;overflow:hidden;border:1px solid rgba(168,85,247,0.2);box-shadow:0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(168,85,247,0.08);}
 
-    .orb-1 {
-      top: -50px;
-      left: 10%;
-      width: 300px;
-      height: 300px;
-      background: var(--accent-purple);
-    }
+/* VIDEO BOX */
+.video-box{position:relative;background:#000;min-height:280px;display:flex;align-items:center;justify-content:center;}
+video{width:100%;max-height:75vh;display:block;object-fit:contain;background:#000;}
 
-    .orb-2 {
-      bottom: 50px;
-      right: -50px;
-      width: 350px;
-      height: 350px;
-      background: #7c3aed;
-      animation-delay: -6s;
-    }
+/* VIDEO LOADER */
+#videoLoader{position:absolute;inset:0;background:#05030a;color:#cbd5e1;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;z-index:10;}
 
-    @keyframes floatOrb {
-      0% { transform: translateY(0) scale(1); }
-      100% { transform: translateY(40px) scale(1.15); }
-    }
+/* INFO SECTION */
+.video-info{padding:16px;}
+.video-title{font-size:18px;font-weight:700;line-height:1.4;color:#fff;display:flex;align-items:center;gap:6px;}
+.video-desc{margin-top:8px;color:#94a3b8;font-size:13px;line-height:1.5;}
 
-    /* Page Wrapper Container */
-    .page-wrapper {
-      width: 100%;
-      max-width: 480px;
-      margin: 0 auto;
-      padding: 18px 14px 40px;
-      position: relative;
-    }
+/* BADGES / PILLS DALAM INFO */
+.info-badges{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+.info-badge{background:#1a132b;border:1px solid rgba(168,85,247,0.25);color:#f1f5f9;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:600;display:inline-flex;align-items:center;gap:5px;}
 
-    /* =========================================================
-       2. HEADER COMPONENT
-       ========================================================= */
-    .header {
-      text-align: center;
-      padding: 12px 8px 20px;
-    }
+/* CTA WATCH FULL BUTTON */
+.cta-container{padding:0 12px;margin:16px 0;}
+.cta-button{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:linear-gradient(135deg, #ec4899 0%, #a855f7 100%);color:#fff;padding:14px;border-radius:16px;font-size:15px;font-weight:700;text-decoration:none;box-shadow:0 6px 20px rgba(236,72,153,0.35);transition:transform 0.2s;}
+.cta-button:active{transform:scale(0.98);}
 
-    .vip-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 12px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(168, 85, 247, 0.15));
-      border: 1px solid rgba(212, 175, 55, 0.4);
-      color: var(--accent-gold);
-      font-size: 10.5px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      box-shadow: 0 0 12px rgba(212, 175, 55, 0.2);
-      margin-bottom: 10px;
-    }
+/* SECTION */
+.section-title{padding:10px 16px;font-size:15px;font-weight:700;color:#fbbf24;display:flex;align-items:center;gap:6px;}
 
-    .vip-badge i {
-      color: var(--accent-gold);
-      filter: drop-shadow(0 0 4px var(--accent-gold));
-    }
+/* ADS */
+.ads-card{margin:12px;background:#120d1c;border-radius:16px;padding:14px;border:1px solid rgba(168,85,247,0.15);overflow:hidden;}
+.ads-label{color:#64748b;font-size:10px;text-transform:uppercase;margin-bottom:8px;letter-spacing:1.5px;text-align:center;}
 
-    .brand-title {
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: -0.5px;
-      text-transform: uppercase;
-      color: #fff;
-      text-shadow: 0 0 12px rgba(255, 255, 255, 0.6), 0 0 24px rgba(168, 85, 247, 0.6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .brand-title span {
-      background: linear-gradient(135deg, var(--accent-magenta), var(--accent-purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.6));
-    }
-
-    .pills-bar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      margin-top: 10px;
-      flex-wrap: wrap;
-    }
-
-    .pill-item {
-      padding: 4px 10px;
-      border-radius: 30px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      backdrop-filter: blur(8px);
-    }
-
-    .pill-item.active {
-      color: #f1f5f9;
-      border-color: rgba(168, 85, 247, 0.35);
-      background: rgba(168, 85, 247, 0.12);
-    }
-
-    /* =========================================================
-       3. MAIN VIDEO CARD
-       ========================================================= */
-    .card-neon-wrapper {
-      position: relative;
-      border-radius: 20px;
-      padding: 1px;
-      background: linear-gradient(135deg, rgba(168, 85, 247, 0.6), rgba(212, 175, 55, 0.4), rgba(236, 72, 153, 0.3));
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 25px var(--neon-glow-purple);
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-
-    .video-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-radius: 19px;
-      overflow: hidden;
-    }
-
-    .video-container {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      background: #000;
-      overflow: hidden;
-    }
-
-    video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* Video Overlay Loader */
-    #videoLoader {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle, rgba(15, 7, 28, 0.95), #05020a);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      z-index: 10;
-      transition: opacity 0.4s ease;
-    }
-
-    .spinner {
-      width: 36px;
-      height: 36px;
-      border: 3px solid rgba(168, 85, 247, 0.2);
-      border-top-color: var(--accent-purple);
-      border-right-color: var(--accent-gold);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    .loader-text {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--accent-purple);
-      text-shadow: 0 0 8px var(--neon-glow-purple);
-    }
-
-    /* Video Info Section */
-    .video-details {
-      padding: 16px;
-    }
-
-    .vibe-title {
-      font-size: 19px;
-      font-weight: 900;
-      color: #fff;
-      line-height: 1.3;
-      letter-spacing: 0.2px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .vibe-desc {
-      margin-top: 8px;
-      font-size: 12.5px;
-      line-height: 1.55;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    .tags-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 14px;
-    }
-
-    .tag-chip {
-      padding: 6px 11px;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(168, 85, 247, 0.2);
-      color: #e2e8f0;
-      font-size: 11px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    /* =========================================================
-       4. CALL TO ACTION BUTTON (SMARTLINK)
-       ========================================================= */
-    .cta-wrapper {
-      margin-bottom: 22px;
-    }
-
-    .smartlink-btn {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      padding: 16px 20px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #ec4899 0%, #a855f7 50%, #6366f1 100%);
-      background-size: 200% 200%;
-      animation: gradientShift 4s ease infinite;
-      color: #fff;
-      text-decoration: none;
-      font-size: 15px;
-      font-weight: 900;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4), 0 0 20px rgba(168, 85, 247, 0.3);
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .smartlink-btn:active {
-      transform: scale(0.98);
-    }
-
-    .smartlink-btn::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(
-        60deg,
-        transparent 30%,
-        rgba(255, 255, 255, 0.35) 50%,
-        transparent 70%
-      );
-      transform: rotate(30deg);
-      animation: shimmerSweep 3s infinite;
-      pointer-events: none;
-    }
-
-    @keyframes shimmerSweep {
-      0% { transform: translateX(-100%) rotate(30deg); }
-      100% { transform: translateX(100%) rotate(30deg); }
-    }
-
-    /* =========================================================
-       5. TRENDING SECTION & NATIVE BANNER AD
-       ========================================================= */
-    .section-header {
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .section-title-text {
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--accent-gold);
-      text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
-    }
-
-    .section-line {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(212, 175, 55, 0.4), transparent);
-    }
-
-    .native-ad-card {
-      position: relative;
-      width: 100%;
-      min-height: 100px;
-      padding: 12px;
-      background: rgba(10, 5, 20, 0.75);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(168, 85, 247, 0.2);
-      border-radius: 16px;
-      text-align: center;
-      box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.8);
-      overflow: visible;
-    }
-
-    .ad-label {
-      display: block;
-      color: #64748b;
-      font-size: 8.5px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      text-align: right;
-      margin-bottom: 8px;
-    }
-
-    .native-ad-card #native-ad-script-slot {
-      display: block;
-      width: 100%;
-      min-height: 60px;
-    }
-
-    .native-ad-card iframe,
-    .native-ad-card img {
-      max-width: 100%;
-      border-radius: 8px;
-    }
-
-    /* =========================================================
-       6. FOOTER & HIDDEN ELEMENTS
-       ========================================================= */
-    .footer {
-      text-align: center;
-      color: #475569;
-      font-size: 11px;
-      font-weight: 600;
-      margin-top: 28px;
-      letter-spacing: 0.5px;
-    }
-
-    /* Menyembunyikan elemen fisik Histats dari halaman */
-    #histats_counter, noscript {
-      display: none !important;
-      visibility: hidden !important;
-      opacity: 0 !important;
-      height: 0 !important;
-      width: 0 !important;
-    }
-  </style>
+/* FOOTER */
+.footer{text-align:center;color:#64748b;font-size:11px;padding:24px 15px;}
+</style>
 </head>
 <body>
+<div class='page'>
 
-  <!-- Background Orbs -->
-  <div class="bg-mesh"></div>
-  <div class="ambient-orb orb-1"></div>
-  <div class="ambient-orb orb-2"></div>
+<!-- HEADER & VIP ACCESS -->
+<div class='header'>
+  <div>
+    <span class='vip-badge'>👑 VIP MIDNIGHT ACCESS</span>
+  </div>
+  <div class='logo'>CENTRALVIBES <span>VIDIEO</span> 🟣</div>
+  
+  <div class='tags-container'>
+    <span class='tag-chip'>LATE NIGHT</span>
+    <span class='tag-dot'>•</span>
+    <span class='tag-chip'>GOOD VIBES</span>
+    <span class='tag-dot'>•</span>
+    <span class='tag-chip'>18+</span>
+  </div>
+</div>
 
-  <div class="page-wrapper">
-    
-    <!-- HEADER -->
-    <header class="header">
-      <div class="vip-badge">
-        <i class="fa-solid fa-crown"></i> VIP Midnight Access
-      </div>
-      <h1 class="brand-title">NextWatch <span>Vidio 😈</span></h1>
-      <div class="pills-bar">
-        <span class="pill-item active">LATE NIGHT</span>
-        <span class="pill-item">•</span>
-        <span class="pill-item active">GOOD VIBES</span>
-        <span class="pill-item">•</span>
-        <span class="pill-item active">18+</span>
-      </div>
-    </header>
+<!-- NATIVE BANNER (PINDAH KE ATAS VIDEO) -->
+<div class='ads-card'>
+  <div class='ads-label'>ADVERTISEMENT</div>
+  <div style='text-align:center;'>
+    <script data-cfasync="false" async type="text/javascript" src="//oc.trifledloto.com/tpFZBYBG4krcxye4/155934"></script>
+  </div>
+</div>
 
-    <!-- MAIN VIDEO CARD -->
-    <main class="card-neon-wrapper">
-      <div class="video-card">
-        
-        <!-- Video Player Frame -->
-        <div class="video-container">
-          <div id="videoLoader">
-            <div class="spinner"></div>
-            <div class="loader-text">Loading Midnight Vibe...</div>
-          </div>
+<!-- VIDEO CARD -->
+<div class='video-card'>
+  <div class='video-box'>
+    <!-- LAYAR LOADING -->
+    <div id='videoLoader'>Video load in 1 second...</div>
 
-          <video 
-            id="player" 
-            autoplay 
-            muted 
-            playsinline 
-            webkit-playsinline 
-            controls 
-            controlsList="nodownload noremoteplayback" 
-            disablePictureInPicture 
-            poster="https://placehold.co/480x270/080312/a855f7?text=NextWatch+Midnight+Vibe" 
-            preload="metadata">
-            <source id="videoSource" src="" type="video/mp4">
-          </video>
-        </div>
-
-        <!-- Video Description -->
-        <div class="video-details">
-          <h2 class="vibe-title">Late Night Memes 😈</h2>
-          <p class="vibe-desc">Welcome to NextWatchVidio — late-night memes, chaotic moments, good vibes, and after-dark energy. New clips and fresh vibes every day.</p>
-          
-          <div class="tags-grid">
-            <div class="tag-chip"><i class="fa-solid fa-fire" style="color:#f97316;"></i> Funny Memes</div>
-            <div class="tag-chip"><i class="fa-solid fa-bolt" style="color:#eab308;"></i> Good Vibes</div>
-            <div class="tag-chip"><i class="fa-solid fa-moon" style="color:#a855f7;"></i> After Dark</div>
-            <div class="tag-chip"><i class="fa-solid fa-circle-exclamation" style="color:#ec4899;"></i> 18+</div>
-          </div>
-        </div>
-
-      </div>
-    </main>
-
-    <!-- CALL TO ACTION LINK -->
-    <section class="cta-wrapper">
-      <a class="smartlink-btn" href="https://x-hubb.github.io/Badiesgirlhub/" rel="nofollow noopener noreferrer" target="_blank">
-        <i class="fa-solid fa-fire-flame-curved"></i> WATCH FULL VIDS (HD / NO ADS)
-      </a>
-    </section>
-
-    <!-- NATIVE BANNER AD -->
-    <section class="trending-section">
-      <div class="section-header">
-        <span class="section-title-text">🔥 Trending Vidio</span>
-        <div class="section-line"></div>
-      </div>
-
-      <div class="native-ad-card">
-        <span class="ad-label">ADVERTISEMENT</span>
-        <div id="native-ad-script-slot">
-          <script data-cfasync="false" async type="text/javascript" src="//ju.bionomysolera.com/tKxL7nY316cl3r5/155722"></script>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-      © 2026 NextWatchVidio • All Rights Reserved
-    </footer>
-
+    <video controls='controls' controlsList='nodownload noremoteplayback' disablePictureInPicture='disablePictureInPicture' id='player' muted='muted' playsinline='playsinline' poster='https://via.placeholder.com/480x720?text=Loading...' preload='metadata'>
+      <source id='videoSource' src='' type='video/mp4'></source>
+    </video>
   </div>
 
-  <!-- JAVASCRIPT LOGIC -->
-  <script type="text/javascript">
-    (function () {
-      /* Parameter Parser */
-      const params = new URLSearchParams(window.location.search);
-      let videoParam = params.get("v");
-      
-      if (!videoParam) {
-        videoParam = "M4vfHRro1";
+  <div class='video-info'>
+    <div class='video-title'>Central Vibes Video 🔞</div>
+    <div class='video-desc'>Central Vibes — Viral Videos. Fresh Vibes. Every Day., Your Daily Dose of Trending Hot Videos.</div>
+    
+    <div class='info-badges'>
+      <span class='info-badge'>🔥 Funny Memes</span>
+      <span class='info-badge'>⚡ Good Vibes</span>
+      <span class='info-badge'>🌙 After Dark</span>
+      <span class='info-badge'>🔞 18+</span>
+    </div>
+  </div>
+</div>
+
+<!-- TOMBOL WATCH FULL VIDS (CTA) -->
+<div class='cta-container'>
+  <a href="#" id="smartlinkBtn" class='cta-button'>
+    🔥 WATCH FULL VIDS (HD)
+  </a>
+</div>
+
+<!-- FOOTER -->
+<div class='footer'>
+  &#169; 2026 Viral Media &#8226; All Rights Reserved
+</div>
+
+</div>
+
+<!-- ===================================================== JAVASCRIPT UTAMA ===================================================== -->
+<script type='text/javascript'>
+(function () {
+
+/* ========================= IMPRESSION TAGGING ========================= */
+const impressionSeen = new Set();
+
+function tagImpression(name, element){
+  if(!element || impressionSeen.has(name)){return;}
+  impressionSeen.add(name);
+
+  try{
+    const key = "nextwatch_impressions";
+    const data = JSON.parse(localStorage.getItem(key) || "[]");
+    data.push({
+      event: name,
+      time: new Date().toISOString(),
+      page: location.href
+    });
+    localStorage.setItem(key, JSON.stringify(data.slice(-100)));
+  }catch(e){}
+
+  element.setAttribute("data-impression-tagged","true");
+}
+
+tagImpression("page_impression", document.body);
+
+/* ========================= OBSERVER ========================= */
+const videoCard = document.querySelector(".video-card");
+const adCard = document.querySelector(".ads-card");
+
+if("IntersectionObserver" in window){
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting || entry.intersectionRatio < 0.25) return;
+
+      if(entry.target === videoCard){
+        tagImpression("video_impression", entry.target);
       }
-      
-      let finalVideoUrl = videoParam;
-      if (!finalVideoUrl.startsWith("http")) {
-        finalVideoUrl = "https://cdn.videy.co/" + finalVideoUrl;
+      if(entry.target === adCard){
+        tagImpression("native_banner_impression", entry.target);
       }
-      if (!finalVideoUrl.endsWith(".mp4")) {
-        finalVideoUrl += ".mp4";
-      }
+      observer.unobserve(entry.target);
+    });
+  }, {threshold:[0.25]});
 
-      const player = document.getElementById("player");
-      const source = document.getElementById("videoSource");
-      const loader = document.getElementById("videoLoader");
+  if(videoCard) observer.observe(videoCard);
+  if(adCard) observer.observe(adCard);
+} else {
+  tagImpression("video_impression", videoCard);
+  tagImpression("native_banner_impression", adCard);
+}
 
-      player.autoplay = true;
-      player.muted = true;
-      player.playsInline = true;
+/* ========================= SMARTLINK ========================= */
+const smartlink = "https://www.facebook.com/janoub.lebnan/";
+const smartlinkBtn = document.getElementById("smartlinkBtn");
+if(smartlinkBtn) {
+  smartlinkBtn.href = smartlink;
+  smartlinkBtn.target = "_blank";
+}
 
-      source.src = finalVideoUrl;
-      player.load();
+/* ========================= VIDEO PARAMETER ========================= */
+const params = new URLSearchParams(window.location.search);
+let video = params.get("v");
 
-      function hideLoader() {
-        if (loader) {
-          loader.style.opacity = "0";
-          setTimeout(function() {
-            loader.style.display = "none";
-          }, 400);
-        }
-      }
+if(!video){
+  video = "ULS9uBiW1";
+}
 
-      function startVideo() {
-        player.play().then(function () {
-          hideLoader();
-        }).catch(function () {
-          hideLoader();
-        });
-      }
+if(!video.startsWith("http")){
+  video = "https://cdn.videy.co/" + video;
+}
 
-      player.addEventListener("canplay", startVideo, { once: true });
-      player.addEventListener("playing", hideLoader, { once: true });
+if(!video.endsWith(".mp4")){
+  video += ".mp4";
+}
 
-      player.addEventListener("error", function () {
-        if (loader) {
-          loader.innerHTML = '<div style="color:#ef4444; font-size:11px; font-weight:800; letter-spacing:1px; text-transform:uppercase;">Video Unavailable</div>';
-        }
-      });
+/* ========================= VIDEO ELEMENT ========================= */
+const player = document.getElementById("player");
+const source = document.getElementById("videoSource");
+const loader = document.getElementById("videoLoader");
 
-      setTimeout(startVideo, 1200);
+source.src = video;
+player.load();
 
-      player.addEventListener("contextmenu", function (e) { 
-        e.preventDefault(); 
-      });
-    })();
-  </script>
+setTimeout(function(){
+  loader.style.display = "none";
+  player.play().catch(()=>{});
+}, 1000);
 
-  <!-- HISTATS TRACKER (HIDDEN) -->
-  <div id="histats_counter"></div>
-  <script type="text/javascript">
-    var _Hasync = _Hasync || [];
-    _Hasync.push(['Histats.start', '1,5054566,4,511,95,18,00000000']);
-    _Hasync.push(['Histats.fasi', '1']);
-    _Hasync.push(['Histats.track_hits', '']);
-    (function() {
-      var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-      hs.src = ('//s10.histats.com/js15_as.js');
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-    })();
-  </script>
-  <noscript>
-    <a href="/" target="_blank"><img src="//sstatic1.histats.com/0.gif?5054566&101" alt="" border="0"></a>
-  </noscript>
+player.addEventListener("contextmenu", e => e.preventDefault());
 
-</body>
-</html>
+})();
+</script>
+<!-- Histats.com  START  (aync)-->
+<script type="text/javascript">var _Hasync= _Hasync|| [];
+_Hasync.push(['Histats.start', '1,5054566,4,511,95,18,00000000']);
+_Hasync.push(['Histats.fasi', '1']);
+_Hasync.push(['Histats.track_hits', '']);
+(function() {
+var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async =

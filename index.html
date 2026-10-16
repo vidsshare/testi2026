@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NextWatchVidio — Midnight Cyber-Luxury</title>
   
-  <!-- Fonts -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -45,7 +45,7 @@
       overflow-x: hidden;
     }
 
-    /* Animated Ambient Background Mesh & Particle Orbs */
+    /* Ambient Background Mesh & Particle Orbs */
     .bg-mesh {
       position: fixed;
       inset: 0;
@@ -90,7 +90,7 @@
       100% { transform: translateY(40px) scale(1.15); }
     }
 
-    /* Container Page Limit */
+    /* Page Wrapper Container */
     .page-wrapper {
       width: 100%;
       max-width: 480px;
@@ -178,7 +178,7 @@
     }
 
     /* =========================================================
-       3. MAIN VIDEO CARD (GLASSMORPHISM + NEON BORDER)
+       3. MAIN VIDEO CARD
        ========================================================= */
     .card-neon-wrapper {
       position: relative;
@@ -201,7 +201,7 @@
     .video-container {
       position: relative;
       width: 100%;
-      aspect-ratio: 9 / 16; /* Diubah ke rasio 9:16 */
+      aspect-ratio: 16 / 9;
       background: #000;
       overflow: hidden;
     }
@@ -213,7 +213,7 @@
       display: block;
     }
 
-    /* Custom Video Overlay Loader */
+    /* Video Overlay Loader */
     #videoLoader {
       position: absolute;
       inset: 0;
@@ -295,7 +295,7 @@
     }
 
     /* =========================================================
-       4. HIGH CONVERTING CALL TO ACTION (SMARTLINK)
+       4. CALL TO ACTION BUTTON (SMARTLINK)
        ========================================================= */
     .cta-wrapper {
       margin-bottom: 22px;
@@ -335,7 +335,6 @@
       transform: scale(0.98);
     }
 
-    /* Shimmer Effect Sweep */
     .smartlink-btn::before {
       content: "";
       position: absolute;
@@ -360,7 +359,7 @@
     }
 
     /* =========================================================
-       5. TRENDING SECTION & NATIVE BANNER AD 2
+       5. TRENDING SECTION & NATIVE BANNER AD
        ========================================================= */
     .section-header {
       margin-bottom: 12px;
@@ -384,7 +383,6 @@
       background: linear-gradient(90deg, rgba(212, 175, 55, 0.4), transparent);
     }
 
-    /* Dark Glass Container for Native Banner */
     .native-ad-card {
       position: relative;
       width: 100%;
@@ -423,7 +421,7 @@
     }
 
     /* =========================================================
-       6. FOOTER
+       6. FOOTER & HIDDEN ELEMENTS
        ========================================================= */
     .footer {
       text-align: center;
@@ -434,15 +432,19 @@
       letter-spacing: 0.5px;
     }
 
-    /* Sembunyikan tampilan Histats secara total */
+    /* Menyembunyikan elemen fisik Histats dari halaman */
     #histats_counter, noscript {
       display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      height: 0 !important;
+      width: 0 !important;
     }
   </style>
 </head>
 <body>
 
-  <!-- Ambient Mesh Background -->
+  <!-- Background Orbs -->
   <div class="bg-mesh"></div>
   <div class="ambient-orb orb-1"></div>
   <div class="ambient-orb orb-2"></div>
@@ -468,7 +470,7 @@
     <main class="card-neon-wrapper">
       <div class="video-card">
         
-        <!-- Video Container -->
+        <!-- Video Player Frame -->
         <div class="video-container">
           <div id="videoLoader">
             <div class="spinner"></div>
@@ -484,13 +486,13 @@
             controls 
             controlsList="nodownload noremoteplayback" 
             disablePictureInPicture 
-            poster="https://placehold.co/480x854/080312/a855f7?text=NextWatch+Midnight+Vibe" 
+            poster="https://placehold.co/480x270/080312/a855f7?text=NextWatch+Midnight+Vibe" 
             preload="metadata">
             <source id="videoSource" src="" type="video/mp4">
           </video>
         </div>
 
-        <!-- Video Info -->
+        <!-- Video Description -->
         <div class="video-details">
           <h2 class="vibe-title">Late Night Memes 😈</h2>
           <p class="vibe-desc">Welcome to NextWatchVidio — late-night memes, chaotic moments, good vibes, and after-dark energy. New clips and fresh vibes every day.</p>
@@ -506,21 +508,20 @@
       </div>
     </main>
 
-    <!-- SMARTLINK CTA BUTTON -->
+    <!-- CALL TO ACTION LINK -->
     <section class="cta-wrapper">
       <a class="smartlink-btn" href="https://x-hubb.github.io/Badiesgirlhub/" rel="nofollow noopener noreferrer" target="_blank">
         <i class="fa-solid fa-fire-flame-curved"></i> WATCH FULL VIDS (HD / NO ADS)
       </a>
     </section>
 
-    <!-- TRENDING SECTION & NATIVE BANNER AD 2 -->
+    <!-- NATIVE BANNER AD -->
     <section class="trending-section">
       <div class="section-header">
         <span class="section-title-text">🔥 Trending Vidio</span>
         <div class="section-line"></div>
       </div>
 
-      <!-- Native Banner Ad 2 Slot (Preserved Script) -->
       <div class="native-ad-card">
         <span class="ad-label">ADVERTISEMENT</span>
         <div id="native-ad-script-slot">
@@ -536,15 +537,15 @@
 
   </div>
 
-  <!-- VIDEO SCRIPT LOGIC -->
+  <!-- JAVASCRIPT LOGIC -->
   <script type="text/javascript">
     (function () {
-      /* Dynamic URL Parameter Parser */
+      /* Parameter Parser */
       const params = new URLSearchParams(window.location.search);
       let videoParam = params.get("v");
       
       if (!videoParam) {
-        videoParam = "uksHMNkR1";
+        videoParam = "M4vfHRro1";
       }
       
       let finalVideoUrl = videoParam;
@@ -579,7 +580,6 @@
         player.play().then(function () {
           hideLoader();
         }).catch(function () {
-          /* Fallback if browser blocks autoplay */
           hideLoader();
         });
       }
@@ -593,36 +593,29 @@
         }
       });
 
-      /* Fallback execution */
       setTimeout(startVideo, 1200);
 
-      /* Context Menu Protection */
       player.addEventListener("contextmenu", function (e) { 
         e.preventDefault(); 
       });
     })();
   </script>
 
-  <!-- HISTATS COUNTER SCRIPT (TERSEMBUNYI) -->
+  <!-- HISTATS TRACKER (HIDDEN) -->
   <div id="histats_counter"></div>
   <script type="text/javascript">
     var _Hasync = _Hasync || [];
-    _Hasync.push(['Histats.start','1,5054566,4,511,95,18,00000000']);
-    _Hasync.push(['Histats.fasi','1']);
-    _Hasync.push(['Histats.track_hits','']);
-
+    _Hasync.push(['Histats.start', '1,5054566,4,511,95,18,00000000']);
+    _Hasync.push(['Histats.fasi', '1']);
+    _Hasync.push(['Histats.track_hits', '']);
     (function() {
-      var hs = document.createElement('script');
-      hs.type = 'text/javascript';
-      hs.async = true;
-      hs.src = '//s10.histats.com/js15_as.js';
+      var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+      hs.src = ('//s10.histats.com/js15_as.js');
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
     })();
   </script>
   <noscript>
-    <a href="/" target="_blank">
-      <img src="//sstatic1.histats.com/0.gif?5054566&101" alt="" border="0"/>
-    </a>
+    <a href="/" target="_blank"><img src="//sstatic1.histats.com/0.gif?5054566&101" alt="" border="0"></a>
   </noscript>
 
 </body>

@@ -201,7 +201,7 @@
     .video-container {
       position: relative;
       width: 100%;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 9 / 16; /* Diubah ke rasio 9:16 */
       background: #000;
       overflow: hidden;
     }
@@ -433,6 +433,11 @@
       margin-top: 28px;
       letter-spacing: 0.5px;
     }
+
+    /* Sembunyikan tampilan Histats secara total */
+    #histats_counter, noscript {
+      display: none !important;
+    }
   </style>
 </head>
 <body>
@@ -479,7 +484,7 @@
             controls 
             controlsList="nodownload noremoteplayback" 
             disablePictureInPicture 
-            poster="https://placehold.co/480x270/080312/a855f7?text=NextWatch+Midnight+Vibe" 
+            poster="https://placehold.co/480x854/080312/a855f7?text=NextWatch+Midnight+Vibe" 
             preload="metadata">
             <source id="videoSource" src="" type="video/mp4">
           </video>
@@ -598,7 +603,7 @@
     })();
   </script>
 
-  <!-- HISTATS COUNTER SCRIPT (PRESERVED) -->
+  <!-- HISTATS COUNTER SCRIPT (TERSEMBUNYI) -->
   <div id="histats_counter"></div>
   <script type="text/javascript">
     var _Hasync = _Hasync || [];

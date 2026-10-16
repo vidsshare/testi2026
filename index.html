@@ -3,10 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Video Layout - Interactive Play Button</title>
-  
-  <!-- Script Iklan Baru (Diletakkan di head untuk performa optimal) -->
-  <script data-cfasync="false" async type="text/javascript" src="//fm.alogiansear.com/s1omJAMiRmc5/155995"></script>
+  <title>Central Vibes</title>
 
   <!-- Mengimpor Font Google (Poppins) -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
@@ -28,7 +25,7 @@
 
     .video-card {
       width: 100%;
-      max-width: 600px;
+      max-width: 400px; /* Diperkecil agar pas untuk rasio vertikal */
       border: 2px solid #1e293b;
       border-radius: 12px;
       background-color: #1e293b;
@@ -68,11 +65,11 @@
       border: 1px solid rgba(56, 189, 248, 0.2);
     }
 
-    /* === VIDEO PLAYER & CUSTOM PLAY BUTTON === */
+    /* === VIDEO PLAYER (RASIO 9:16) & CUSTOM PLAY BUTTON === */
     .player-section {
       position: relative;
       width: 100%;
-      padding-top: 56.25%; /* Rasio 16:9 */
+      padding-top: 177.78%; /* Mengubah rasio dari 56.25% (16:9) menjadi 177.78% (9:16) */
       background-color: #000;
       border-bottom: 2px solid #334155;
     }
@@ -111,7 +108,6 @@
       background: rgba(255, 75, 43, 1);
     }
 
-    /* Segitiga Simbol Play */
     .custom-play-btn::after {
       content: "";
       display: block;
@@ -120,10 +116,9 @@
       border-top: 12px solid transparent;
       border-bottom: 12px solid transparent;
       border-left: 20px solid #ffffff;
-      margin-left: 4px; /* Menyelaraskan simbol ke tengah */
+      margin-left: 4px;
     }
 
-    /* Kelas untuk menyembunyikan tombol saat video berjalan */
     .custom-play-btn.hidden {
       opacity: 0;
       pointer-events: none;
@@ -156,7 +151,7 @@
       display: inline-block;
       width: 100%;
       padding: 12px 20px;
-      background: linear-gradient(135deg, #1877f2, #166fe5); /* Menggunakan warna khas Facebook */
+      background: linear-gradient(135deg, #1877f2, #166fe5);
       color: #ffffff;
       font-size: 1rem;
       font-weight: 600;
@@ -177,42 +172,40 @@
 <body>
 
   <div class="video-card">
+
     <!-- Header -->
     <div class="header-section">
-      <h1>🔥 AMAZING VIDEO TITLE</h1>
-      <p>✨ Watch this trending video to explore awesome content and tips!</p>
+      <h1>🔥Redhead Schoolgirl</h1>
+      <p>✨Viral Videos. Trending Moments. Every Day.</p>
     </div>
 
-    <!-- Video Player dengan Custom Play Button -->
+    <!-- Video Player dengan Rasio 9:16, Autoplay, Muted, & Playsinline -->
     <div class="player-section">
-      <video id="myVideo" controls poster="https://via.placeholder.com/600x337/000000/FFFFFF?text=Click+Play+To+Watch">
-        <!-- Ganti 'src' dengan URL file video .mp4 Anda -->
-        <source src="https://qu.ax/QoWaO.mp4/" type="video/mp4">
+      <video id="myVideo" autoplay muted playsinline controls poster="https://cdn.aceimg.com/AJhac3VZ2.jpg">
+        <source src="https://cdn.videy.co/TPmyuoMj1.mp4" type="video/mp4">
         Browser Anda tidak mendukung pemutar video HTML5.
       </video>
 
       <!-- Tombol Play Tengah -->
-      <div class="custom-play-btn" id="playBtn"></div>
+      <div class="custom-play-btn hidden" id="playBtn"></div>
     </div>
 
     <!-- Iklan Native Banner Bawah -->
     <div class="ad-section">
-      <!-- Script Iklan 1 -->
       <script data-cfasync="false" async type="text/javascript" src="//oc.trifledloto.com/tpFZBYBG4krcxye4/155934"></script>
     </div>
 
     <!-- Tombol More Videos -->
     <div class="more-videos-section">
-      <a href="https://www.facebook.com/scrollsbuzz" target="_blank" rel="noopener noreferrer" class="btn-more-videos">MORE VIDEOS</a>
+      <a href="https://www.facebook.com/groups/1552108599214915/" target="_blank" rel="noopener noreferrer" class="btn-more-videos">MORE VIDEOS</a>
     </div>
   </div>
 
-  <!-- JavaScript Logika Tombol Play/Pause -->
+  <!-- JavaScript Logika Tombol Play/Pause & Autoplay Fallback -->
   <script>
     const video = document.getElementById('myVideo');
     const playBtn = document.getElementById('playBtn');
 
-    // Fungsi Toggle Play / Pause
     function togglePlay() {
       if (video.paused) {
         video.play();
@@ -221,15 +214,13 @@
       }
     }
 
-    // Klik tombol custom Play di tengah
     playBtn.addEventListener('click', togglePlay);
+    video.addEventListener('click', togglePlay);
 
-    // Sembunyikan tombol saat video berjalan
     video.addEventListener('play', () => {
       playBtn.classList.add('hidden');
     });
 
-    // Tampilkan tombol kembali saat video di-pause atau selesai
     video.addEventListener('pause', () => {
       playBtn.classList.remove('hidden');
     });
@@ -237,7 +228,13 @@
     video.addEventListener('ended', () => {
       playBtn.classList.remove('hidden');
     });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      video.play().catch(error => {
+        playBtn.classList.remove('hidden');
+      });
+    });
   </script>
 
-</body>
-</html>
+  <!-- Histats.com START (async) -->
+  <script type="text
